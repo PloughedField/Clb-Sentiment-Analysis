@@ -1,5 +1,5 @@
 const HOSTED_URLS = {
-    queryTwitter:   'https://clb-sentiment-analysis.herokuapp.com/js/sentiment/queryTwitter.php?q=',
+    queryTwitter:   'https://clb-sentiment-analysis.herokuapp.com/js/sentiment/php/queryTwitter.php?q=',
     model: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json',
     metadata: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/metadata.json'
 };  
