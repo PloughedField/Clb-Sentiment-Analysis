@@ -11,7 +11,7 @@ $settings = array(
 );
 
 $url = 'https://api.twitter.com/1.1/search/tweets.json';
-$getfield = '?q= -filter:replies&lang=en&count=40&tweet_mode=extended';
+$getfield = '?q= -filter:retweets AND -filter:lang=en&lang=he&count=10&result_type=popular';
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
