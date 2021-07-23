@@ -28,12 +28,16 @@ $(".btn-search").click(function () {
     twitterSentiment();
 });
 
+// function init(){
+//     if(window.location.hostname == 'localhost'){
+//         urls = LOCAL_URLS;
+//     }else {
+//         urls = HOSTED_URLS;
+//     }
+// }
 function init(){
-    if(window.location.hostname == 'localhost'){
-        urls = LOCAL_URLS;
-    }else {
-        urls = HOSTED_URLS;
-    }
+ 
+    urls = HOSTED_URLS
 }
 
 async function setupSentimentModel(){
