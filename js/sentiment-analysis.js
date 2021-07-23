@@ -3,11 +3,7 @@ const HOSTED_URLS = {
     model: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json',
     metadata: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/metadata.json'
 };  
-const LOCAL_URLS = {
-    queryTwitter:  'php/queryTwitter.php?q=',
-    model: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json',
-    metadata: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/metadata.json'
-};
+
 const SentimentThreshold = {
     Positive: 0.66,
     Neutral: 0.33,
@@ -28,13 +24,7 @@ $(".btn-search").click(function () {
     twitterSentiment();
 });
 
-// function init(){
-//     if(window.location.hostname == 'localhost'){
-//         urls = LOCAL_URLS;
-//     }else {
-//         urls = HOSTED_URLS;
-//     }
-// }
+
 function init(){
  
     urls = HOSTED_URLS
