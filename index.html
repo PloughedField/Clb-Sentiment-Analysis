@@ -6,14 +6,46 @@
     <title>Twitter Sentiment Analysis</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css"  media='screen' href="style/main.css" />
     <link rel='stylesheet' type='text/css' media='screen' href='style/sentiment-analysis.css'>
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.7.3/tf.min.js.map"></script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>   
+    
 </head>
 <body>
     <main>
+        <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+            <div class="container">
+              <ul class="nav navbar-nav">
+                <li class="active">
+                  <a href="https://twitter-clb-2021.herokuapp.com/"><span class="glyphicon glyphicon-home"></span> Home</a>
+                </li>
+                
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="navbar-right">
+                  <a href="https://clb-sentiment-analysis.herokuapp.com/"><span class="glyphicon glyphicon-book"></span> Twitter Sentiment Analysis </a>
+                </li>
+                  <li class="navbar-right">
+                    <a href="https://twitter-clb-2021.herokuapp.com/users-search"><span class="glyphicon glyphicon-book"></span> Twitter Users Search </a>
+                  </li>
+                  <li class="navbar-right">
+                    <a href="https://twitter-clb-2021.herokuapp.com/search-tweets"><span class="glyphicon glyphicon-book"></span> Twitter Search Tweets</a>
+                  </li>
+                </ul>
+            </div>
+          </nav> 
+        
+        <div class="jumbotron text-center">
+          
+          <div class="container">
+            <a href="/" class="lang-logo">
+              <img src="style/twitter-logo.jpg">
+            </a>
+            
+            
         <div class="container mt-3">
             <div class="row">
                 <div class="col-12 text-center">
