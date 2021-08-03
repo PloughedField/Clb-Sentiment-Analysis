@@ -1,5 +1,6 @@
-import { Client } from 'pg';
-
+// const { Client } = require('pg');
+const pg = require('pg');
+Client = pg.Client
 const client = new Client({
   connectionString: 'postgres://jzgreihhqmjaoz:0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad@ec2-52-0-67-144.compute-1.amazonaws.com:5432/d5joavsksmfhff',
   ssl: {
@@ -9,7 +10,7 @@ const client = new Client({
 
 client.connect();
 
-import { v4 as uuidv4 } from 'uuid';
+const { v4: uuidv4 } = require('uuid');
 
 
 const HOSTED_URLS = {
@@ -84,7 +85,7 @@ function processTwitterData(tweets){
 
                 const now = new Date()
                 const insertText = 'INSERT INTO last_search(request_id, ts, search_twit,sentiment,score,tweet) VALUES ($1, $2, $3, $4, $5, $6)'
-                client.query(insertText, [uuidv4(), now,to_pstgeres,tweet_sentiment,sentiment_score.toFixed(4),tweet_text],(err, res) => {
+                client.query(insertText, [uuidv4(), now, to_pstgeres ,tweet_sentiment,'1.2','wowww'],(err, res) => {
                 if (err)
                     console.log ('error', err.message, err.stack)
                 else
