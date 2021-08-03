@@ -1,4 +1,4 @@
-const { Client } = require('pg');
+import { Client } from 'pg';
 
 const client = new Client({
   connectionString: 'postgres://jzgreihhqmjaoz:0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad@ec2-52-0-67-144.compute-1.amazonaws.com:5432/d5joavsksmfhff',
@@ -9,7 +9,7 @@ const client = new Client({
 
 client.connect();
 
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 
 const HOSTED_URLS = {
