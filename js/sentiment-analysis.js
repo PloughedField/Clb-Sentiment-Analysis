@@ -1,6 +1,6 @@
-// const { Client } = require('pg');
-const pg = require('pg');
-Client = pg.Client
+const { Client } = require('pg');
+const { v4: uuidv4 } = require('uuid');
+
 const client = new Client({
   connectionString: 'postgres://jzgreihhqmjaoz:0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad@ec2-52-0-67-144.compute-1.amazonaws.com:5432/d5joavsksmfhff',
   ssl: {
@@ -9,9 +9,6 @@ const client = new Client({
 });
 
 client.connect();
-
-const { v4: uuidv4 } = require('uuid');
-
 
 const HOSTED_URLS = {
     queryTwitter:   window.location.protocol + '//'+ window.location.hostname + '/php/queryTwitter.php?q=',
