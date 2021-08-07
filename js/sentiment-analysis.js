@@ -1,15 +1,3 @@
-const { Client } = require('pg');
-const { v4: uuidv4 } = require('uuid');
-
-const client = new Client({
-  connectionString: 'postgres://jzgreihhqmjaoz:0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad@ec2-52-0-67-144.compute-1.amazonaws.com:5432/d5joavsksmfhff',
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-client.connect();
-
 const HOSTED_URLS = {
     queryTwitter:   window.location.protocol + '//'+ window.location.hostname + '/php/queryTwitter.php?q=',
     model: 'https://storage.googleapis.com/tfjs-models/tfjs/sentiment_cnn_v1/model.json',
@@ -42,6 +30,20 @@ function init(){
     urls = HOSTED_URLS
 }
 
+function guidv4($data = null) {
+    // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
+    $data = $data ?? random_bytes(16);
+    assert(strlen($data) == 16);
+  
+    // Set version to 0100
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+    // Set bits 6-7 to 10
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+  
+    // Output the 36 character UUID.
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+  }
+  
 async function setupSentimentModel(){
     if(typeof model === 'undefined'){
         model = await loadModel(urls.model);
@@ -77,19 +79,20 @@ function processTwitterData(tweets){
                 }else if(sentiment_score >= SentimentThreshold.Negative){
                     tweet_sentiment = 'negative'
                 }
-                var twit_serch = HOSTED_URLS
-                var to_pstgeres = twit_serch.queryTwitter.split('=')[1]
-
-                const now = new Date()
-                const insertText = 'INSERT INTO last_search(request_id, ts, search_twit,sentiment,score,tweet) VALUES ($1, $2, $3, $4, $5, $6)'
-                client.query(insertText, [uuidv4(), now, to_pstgeres ,tweet_sentiment,'1.2','wowww'],(err, res) => {
-                if (err)
-                    console.log ('error', err.message, err.stack)
-                else
-                    console.log (`${res.command} - successful`)
-                client.end();
-                });
-
+               
+				$.ajax({
+                    type: 'get',
+                    url: '/php/InsertToDataPostgres.php?q=' + $("#tag-input").val()+','+tweet_sentiment+','+sentiment_score.toFixed(4)+','+tweet_text,
+                    success: function(data, textStatus, XMLHttpRequest){
+                        console.log('Status: '+data + textStatus);
+                    },
+                    error:function (xhr, ajaxOptions, thrownError){
+                        console.log('Error: ' + xhr.status,xhr.statusText);
+                        // alert(xhr.status);
+                        // alert(xhr.statusText);
+                        // alert(xhr.responseText);
+                    }
+                });   
 
                 twitterData.push({
                     sentiment: tweet_sentiment,
