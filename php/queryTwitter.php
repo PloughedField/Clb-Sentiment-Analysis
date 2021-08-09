@@ -10,8 +10,8 @@ $settings = array(
     'consumer_secret' => "rn1nCBfhbA6ESeMBqmdmU0LcktDG0WdSYMGRFueCIOwiNhMRn1"
 );
 
-$url = 'https://api.twitter.com/1.1/search/tweets.json';
-$getfield = '?q=#'.$hashtag.' AND -filter:retweets AND -filter:replies&lang=en&count=40&tweet_mode=extended';
+$url = 'https://api.twitter.com/1.1/tweets/search/30day/prod.json';
+$getfield = '?query=#'.$hashtag.' AND fromDate=202107292230 AND toDate=202107312230 AND maxResults=100';
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
