@@ -57,7 +57,7 @@ function processTwitterData(tweets){
         result => {
             const twitterData = [];
             $.each(tweets, function( index, tweet ) {
-                const tweet_text = tweet.full_text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+                const tweet_text = tweet.text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
                 const sentiment_score = getSentimentScore(tweet_text);
                 let tweet_sentiment = '';
                 if(sentiment_score > SentimentThreshold.Positive){
@@ -168,8 +168,8 @@ function getSentimentScore(text) {
 function getTwitterHashTagData(query, callback) {
     $.getJSON( urls.queryTwitter + query, function(result) {
         console.log(result);
-        if(result !== null && result.statuses !== null){
-            callback(result.statuses);
+        if(result !== null && result.results !== null){
+            callback(result.results);
         }
     });
 }
