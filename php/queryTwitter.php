@@ -1,7 +1,7 @@
 <?php
 require_once('TwitterAPIExchange.php');
 
-$hashtag = $_GET["q"];
+$hashtag = $_GET["query"];
 
 $settings = array(
     'oauth_access_token' => "1066915601992560640-oOqHW7BU5piqpdeYJrwZbgRQGLRTRS",
