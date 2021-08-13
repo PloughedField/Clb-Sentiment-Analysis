@@ -11,7 +11,7 @@ $settings = array(
 );
 
 $url = 'https://api.twitter.com/1.1/tweets/search/30day/prod.json';
-$getfield = '?query='.$hashtag.'&fromDate=202107292230&toDate=202108092230&maxResults=100';
+$getfield = '?query='.$hashtag.'lang:en&fromDate=202107292230&toDate=202108092230&maxResults=100';
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
