@@ -57,6 +57,7 @@ function processTwitterData(tweets){
         result => {
             const twitterData = [];
             $.each(tweets, function( index, tweet ) {
+		const created_tweet = tweet.created_at
                 const tweet_text = tweet.text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
                 const sentiment_score = getSentimentScore(tweet_text);
                 let tweet_sentiment = '';
@@ -70,7 +71,7 @@ function processTwitterData(tweets){
                
 		$.ajax({
                     type: 'get',
-                    url: '/php/InsertToDataPostgres.php?q=' + $("#tag-input").val()+','+tweet_sentiment+','+sentiment_score.toFixed(4)+','+tweet_text,
+                    url: '/php/InsertToDataPostgres.php?q=' + $("#tag-input").val()+','+tweet_sentiment+','+sentiment_score.toFixed(4)+','+tweet_text+','+created_tweet,
                     success: function(data, textStatus, XMLHttpRequest){
                         console.log('Status: '+data + textStatus);
                     },
