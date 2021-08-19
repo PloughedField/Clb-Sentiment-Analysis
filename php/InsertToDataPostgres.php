@@ -41,7 +41,7 @@ echo 'Connection attempt succeeded.';
 $request_id = guidv4();
 echo $request_id;
 $ts = date("Y-m-d H:i:s");
-$query = "INSERT INTO twitter_clb_new (request_id,ts,search_twit,sentiment,score,tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','$tweet',$created_at)";
+$query = "INSERT INTO twitter_clb_new (request_id,ts,search_twit,sentiment,score,tweet,created_tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','$tweet',$created_at)";
 $result = pg_query($db_handle, $query);
 } else {
 
