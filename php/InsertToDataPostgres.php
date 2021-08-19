@@ -23,7 +23,7 @@
 
 $hashtag = $_GET["q"];
 
-list($search_twit, $sentiment, $score, $tweet) = explode(",", $hashtag);
+list($search_twit, $sentiment, $score, $tweet,$created_at) = explode(",", $hashtag);
     
 $db_handle = pg_connect("host=ec2-52-0-67-144.compute-1.amazonaws.com dbname=d5joavsksmfhff user=jzgreihhqmjaoz password=0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad");
 
@@ -41,7 +41,7 @@ echo 'Connection attempt succeeded.';
 $request_id = guidv4();
 echo $request_id;
 $ts = date("Y-m-d H:i:s");
-$query = "INSERT INTO twitter_clb (request_id,ts,search_twit,sentiment,score,tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','$tweet')";
+$query = "INSERT INTO twitter_clb_new (request_id,ts,search_twit,sentiment,score,tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','$tweet',$created_at)";
 $result = pg_query($db_handle, $query);
 } else {
 
