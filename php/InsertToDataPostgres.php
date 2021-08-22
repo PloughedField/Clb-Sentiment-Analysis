@@ -21,28 +21,81 @@
 }
 
 
-$hashtag = $_GET["q"];
 
-list($search_twit, $sentiment, $score, $tweet,$created_at) = explode(",", $hashtag);
-    
+// $hashtag = $_GET["q"];
+
+// $arr = json_decode( $hashtag, true );
+// print_r($arr);
+// echo $arr[0]["created_at"];
+// foreach($array as $item) { //foreach element in $arr
+//   $uses = $item['created_at']; //etc
+//   echo $uses
+
+// }
+// echo " script! Executed";
+// echo $hashtag;
+
+// // echo json_encode($hashtag);
+// $request_id = guidv4();
+// $ts = date("Y-m-d H:i:s");
+
+// list($search_twit, $sentiment, $score, $tweet,$created_at) = explode(";", $hashtag);
+// // echo $tweet
+// // echo $created_at
+// // echo $search_twit, $sentiment, $score, $tweet ,$created_at
 $db_handle = pg_connect("host=ec2-52-0-67-144.compute-1.amazonaws.com dbname=d5joavsksmfhff user=jzgreihhqmjaoz password=0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad");
+
 
 if ($db_handle) {
 
 echo 'Connection attempt succeeded.';
-// // pg_query("create table twitter_clb (request_id text PRIMARY KEY,
-// // ts timestamp NOT NULL,
-// // search_twit text NOT NULL,
-// // sentiment text NOT NULL,
-// // score double precision NOT NULL,
-// // tweet text NOT NULL)");
+$ajaxadata = json_decode($_POST['jsnos'], true);
+
+$arr_length = count($ajaxadata);
+
+for($i=0;$i<$arr_length;$i++)
+{
+  $request_id = guidv4();
+  $ts = date("Y-m-d H:i:s");
+  $search_twit = $ajaxadata[$i]['search_twit'];
+  $sentiment = $ajaxadata[$i]['sentiment'];
+  $score = $ajaxadata[$i]['score']; 
+  $tweet = $ajaxadata[$i]['tweet'];
+  $created_tweet = $ajaxadata[$i]['created_at'];
+  
+  $query = "INSERT INTO twitter_clb_new (request_id,ts,search_twit,sentiment,score,tweet,created_tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','''$tweet''','$created_tweet');";
+ 
+
+  $result = pg_query($db_handle, $query);
+  // echo $result ;
+ 
+};
 
 
-$request_id = guidv4();
-echo $request_id;
-$ts = date("Y-m-d H:i:s");
-$query = "INSERT INTO twitter_clb_new (request_id,ts,search_twit,sentiment,score,tweet,created_tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','$tweet','$created_at')";
-$result = pg_query($db_handle, $query);
+// pg_query("create table twitter_clb_new (request_id text PRIMARY KEY,
+// ts timestamp NOT NULL,
+// search_twit text NOT NULL,
+// sentiment text NOT NULL,
+// score double precision NOT NULL,
+// tweet text NOT NULL,
+// created_tweet text NOT NULL)");
+
+// echo " script! Executed";
+// $request_id = guidv4();
+// echo $request_id;
+// $score = 0.99;
+// $search_twit = 'PPPP';
+// $sentiment = "positiv";
+// $ts = date("Y-m-d H:i:s");
+// echo $ts;
+// $tweet = "ABC";
+
+
+
+
+// $query = "INSERT INTO twitter_clb_new (request_id,ts,search_twit,sentiment,score,tweet,created_tweet) VALUES ('$request_id','$ts','$search_twit','$sentiment','$score','$tweet','$created_at')";
+
+// $result = pg_query($db_handle, $query);
 } else {
 
 echo 'Connection attempt failed.';
