@@ -10,8 +10,8 @@ $settings = array(
     'consumer_secret' => "rn1nCBfhbA6ESeMBqmdmU0LcktDG0WdSYMGRFueCIOwiNhMRn1"
 );
 
-$url = 'https://api.twitter.com/1.1/tweets/search/30day/prod.json';
-$getfield = '?query='.$hashtag.' lang:en &fromDate=202107292230&toDate=202108092230&maxResults=100';
+$url = 'https://api.twitter.com/1.1/tweets/search/fullarchive/clb.json';
+$getfield = '?query='.$hashtag.' lang:en &fromDate=202107292230&toDate=202108212230&maxResults=100';
 $requestMethod = 'GET';
 
 $twitter = new TwitterAPIExchange($settings);
