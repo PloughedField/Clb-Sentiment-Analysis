@@ -79,7 +79,7 @@ function processTwitterData(tweets){
             });
 	    function doAjaxRequest(twitterData) {  
                 $.ajax({
-                url: "/Php-Sentiment-Analysis/php/A.php",
+                url: "/php/InsertToDataPostgres.php",
                 type: "post",
                 data: {"jsnos" : JSON.stringify(twitterData)},
                 success: function(response) {
