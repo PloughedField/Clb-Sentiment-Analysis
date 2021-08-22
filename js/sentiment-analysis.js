@@ -69,26 +69,28 @@ function processTwitterData(tweets){
                     tweet_sentiment = 'negative'
                 }
                
-		$.ajax({
-                    type: 'get',
-                    url: '/php/InsertToDataPostgres.php?q=' + $("#tag-input").val()+','+tweet_sentiment+','+sentiment_score.toFixed(4)+','+tweet_text+','+created_tweet,
-                    success: function(data, textStatus, XMLHttpRequest){
-                        console.log('Status: '+data + textStatus);
-                    },
-                    error:function (xhr, ajaxOptions, thrownError){
-                        console.log('Error: ' + xhr.status,xhr.statusText);
-                        // alert(xhr.status);
-                        // alert(xhr.statusText);
-                        // alert(xhr.responseText);
-                    }
-                });   
-
-                twitterData.push({
-                    sentiment: tweet_sentiment,
-                    score: sentiment_score.toFixed(4),
-                    tweet: tweet_text
+		twitterData.push({
+		    sentiment: tweet_sentiment,
+		    score: sentiment_score.toFixed(4),
+		    tweet: tweet_text,
+		    search_twit:$("#tag-input").val(),
+		    created_at:created_tweet
                 });
             });
+	    function doAjaxRequest(twitterData) {  
+                $.ajax({
+                url: "/Php-Sentiment-Analysis/php/A.php",
+                type: "post",
+                data: {"jsnos" : JSON.stringify(twitterData)},
+                success: function(response) {
+                console.log(response)
+                },
+                error: function(request, status, error) {
+                alert("Error: data tranmission failed !\n" + error);
+                }
+                });
+                }
+            doAjaxRequest(twitterData)
             console.log(twitterData);
             $('.spinner-border').addClass('d-none');
             displayTweets(twitterData.filter(t => t.sentiment == 'positive'), 'positive');
