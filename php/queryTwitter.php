@@ -1,7 +1,7 @@
 <?php
 
 $hashtag = $_GET["query"];
-$new_hashtag = str_replace(" ","%20",$hashtag);
+// $new_hashtag = str_replace(" ","%20",$hashtag);
 // echo $new_str
 // "&tweet.fields=created_at&max_results=500"
 $curl = curl_init();
