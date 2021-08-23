@@ -1,23 +1,35 @@
 <?php
-require_once('TwitterAPIExchange.php');
 
 $hashtag = $_GET["query"];
+$new_hashtag = str_replace(" ","%20",$hashtag);
+// echo $new_str
+// "&tweet.fields=created_at&max_results=500"
+$curl = curl_init();
 
-$settings = array(
-    'oauth_access_token' => "1066915601992560640-oOqHW7BU5piqpdeYJrwZbgRQGLRTRS",
-    'oauth_access_token_secret' => "tsA7R0cVAkzq94TpCUbgnLRaljSS61YQIPS5cKAdRRf1z",
-    'consumer_key' => "GOG1FOPMnejJGuwBnxKdaxIy9",
-    'consumer_secret' => "rn1nCBfhbA6ESeMBqmdmU0LcktDG0WdSYMGRFueCIOwiNhMRn1"
-);
+curl_setopt_array($curl, [
+  
+  CURLOPT_URL => "https://api.twitter.com/2/tweets/search/all?query=".$new_hashtag."&tweet.fields=created_at&max_results=500",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => [
+    "authorization: Bearer AAAAAAAAAAAAAAAAAAAAAEYTSgEAAAAA9hA%2FASLynG7HGrgtihy6uwZYtwY%3DyPlHRbn7Wf9CR1gmlSExNzFmlus2c8bVWk5NZJm38JTEJW4xxJ"
+  ],
+]);
 
-$url = 'https://api.twitter.com/1.1/tweets/search/fullarchive/clb.json';
-$getfield = '?query='.$hashtag.' lang:en &fromDate=202107292230&toDate=202108212230&maxResults=100';
-$requestMethod = 'GET';
+$response = curl_exec($curl);
+$err = curl_error($curl);
 
-$twitter = new TwitterAPIExchange($settings);
-$response = $twitter->setGetfield($getfield)
-     ->buildOauth($url, $requestMethod)
-     ->performRequest();
+curl_close($curl);
 
-echo $response;
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
 ?>
+
+
