@@ -171,8 +171,8 @@ function getSentimentScore(text) {
 function getTwitterHashTagData(query, callback) {
     $.getJSON( urls.queryTwitter + query, function(result) {
         console.log(result);
-        if(result !== null && result.results !== null){
-            callback(result.results);
+        if(result !== null && result.data !== null){
+            callback(result.data);
         }
     });
 }
