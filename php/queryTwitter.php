@@ -15,9 +15,7 @@ curl_setopt_array($curl, [
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
-  CURLOPT_HTTPHEADER => [
-    "authorization: Bearer AAAAAAAAAAAAAAAAAAAAAEYTSgEAAAAA9hA%2FASLynG7HGrgtihy6uwZYtwY%3DyPlHRbn7Wf9CR1gmlSExNzFmlus2c8bVWk5NZJm38JTEJW4xxJ"
-  ],
+  CURLOPT_HTTPHEADER => [$_ENV["BEARER"]],
 ]);
 
 $response = curl_exec($curl);
