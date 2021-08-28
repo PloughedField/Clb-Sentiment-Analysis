@@ -43,7 +43,7 @@
 // // echo $tweet
 // // echo $created_at
 // // echo $search_twit, $sentiment, $score, $tweet ,$created_at
-$db_handle = pg_connect("host=ec2-52-0-67-144.compute-1.amazonaws.com dbname=d5joavsksmfhff user=jzgreihhqmjaoz password=0b45ef82aa497ddd5cd13c5311a94d3bbe8cafd14621e8b5321fa46e2958adad");
+$db_handle = pg_connect($_ENV["DATABASE"]);
 
 
 if ($db_handle) {
