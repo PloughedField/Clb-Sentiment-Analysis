@@ -8,7 +8,7 @@ $curl = curl_init();
 
 curl_setopt_array($curl, [
   
-  CURLOPT_URL => "https://api.twitter.com/2/tweets/search/all?query=".$new_hashtag."&tweet.fields=created_at&max_results=10",
+  CURLOPT_URL => "https://api.twitter.com/2/tweets/search/all?query=".$new_hashtag."&tweet.fields=created_at&max_results=500",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
